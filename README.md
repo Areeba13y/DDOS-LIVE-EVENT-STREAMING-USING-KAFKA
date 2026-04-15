@@ -264,21 +264,6 @@ Alert Log:
 
 ---
 
-## 📁 Generated Files
-
-| File | Purpose | Format |
-|------|---------|--------|
-| `alerts.json` | Stores all detected attack alerts | JSON |
-| `logs.json` | Stores raw captured traffic | JSON |
-
-### Sample `alerts.json`:
-
-```json
-{"timestamp": "2026-04-15 21:07:56.054390", "ip": "192.168.0.102", "count": 717, "status": "ATTACK", "severity": "HIGH"}
-{"timestamp": "2026-04-15 21:07:56.057385", "ip": "2.16.158.75", "count": 127, "status": "ATTACK", "severity": "HIGH"}
-```
-
----
 
 ## 🛑 Stopping the System
 
@@ -292,46 +277,14 @@ Press `Ctrl + C` in each terminal in this order:
 
 ---
 
-## ⚠️ Troubleshooting
 
-| Issue | Solution |
-|-------|----------|
-| `NoBrokersAvailable` | Make sure Zookeeper and Kafka Server are running |
-| `Topic 'traffic' already exists` | Normal - topic already created |
-| Dashboard shows "No alerts" | Wait 60 seconds for first scan |
-| `python not recognized` | Install Python and add to PATH |
-| Permission denied | Run Command Prompt as Administrator |
-
----
-
-## 🔄 Quick Start Script
-
-Create `start_ddos.bat`:
-
-```batch
-@echo off
-echo Starting DDoS Detection System...
-start "Zookeeper" cmd /k "cd C:\kafka\kafka_2.13-3.9.0 && bin\windows\zookeeper-server-start.bat config\zookeeper.properties"
-timeout /t 5
-start "Kafka Server" cmd /k "cd C:\kafka\kafka_2.13-3.9.0 && bin\windows\kafka-server-start.bat config\server.properties"
-timeout /t 10
-start "Consumer" cmd /k "cd C:\Users\fjwu\Desktop\DDoS-Shield && python ddos_detector.py"
-start "Dashboard" cmd /k "cd C:\Users\fjwu\Desktop\DDoS-Shield && streamlit run dashboard.py"
-echo All systems started! Run producer manually: python capture.py
-pause
-```
-
----
 
 ## 🎯 Future Improvements
 
 - [ ] Add email/SMS alerts for real attacks
 - [ ] Implement machine learning for anomaly detection
 - [ ] Add geolocation tracking for attackers
-- [ ] Create blocking mechanism for malicious IPs
-- [ ] Add historical attack data visualization
-- [ ] Support for multiple network interfaces
-- [ ] Export reports in PDF/CSV format
+
 
 ---
 
